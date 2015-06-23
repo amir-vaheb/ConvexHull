@@ -522,6 +522,75 @@ public boolean isOnRight(Point p, Point q, Point r) {
       + (p.x * q.y - p.y * q.x) > 0;
 }
 
+
+
+
+public class Stack<T> {
+  private int maxSize;
+
+  private ArrayList<T> stackArray;
+
+  private int top;
+
+  public Stack() {
+    stackArray = new ArrayList<T>();
+    top = -1;
+  }
+
+  public void add(T j) {
+    this.push(j) ;
+  }
+
+  public void push(T j) {
+    top++;
+    stackArray.add(j);
+  }
+
+  public T pop() {
+    T elem = stackArray.get(top--);
+    removeElementAt(top+1);
+    return elem;
+  }
+
+  public void removeElementAt(int i) {
+    stackArray.remove(i);
+  }
+
+  //  public T firstElement() {
+  //     return stackArray.get(0); 
+  //  }
+
+  public T lastElement() {
+    return stackArray.get(top);
+  }
+
+  public boolean isEmpty() {
+    return (top == -1);
+  }
+}
+
+public class Button {
+  int x, y;
+  int width, height;
+  String name;
+
+  public Button(int x, int y, int width, int height, String name) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.name = name;
+  }
+
+  public boolean isClicked(int x, int y) {
+    if (x > this.x && x < this.x + this.width) {
+      if (y > this.y && y < this.y + this.height) {
+        return true;
+      }
+    }
+    return false;
+  }
+}
 //  public class Sort<T> {  
 //    
 //    //call mergesort on param list
@@ -622,75 +691,6 @@ public boolean isOnRight(Point p, Point q, Point r) {
 //            
 //        return a;
 //    }
-
-
-
-public class Stack<T> {
-  private int maxSize;
-
-  private ArrayList<T> stackArray;
-
-  private int top;
-
-  public Stack() {
-    stackArray = new ArrayList<T>();
-    top = -1;
-  }
-
-  public void add(T j) {
-    this.push(j) ;
-  }
-
-  public void push(T j) {
-    top++;
-    stackArray.add(j);
-  }
-
-  public T pop() {
-    T elem = stackArray.get(top--);
-    removeElementAt(top+1);
-    return elem;
-  }
-
-  public void removeElementAt(int i) {
-    stackArray.remove(i);
-  }
-
-  //  public T firstElement() {
-  //     return stackArray.get(0); 
-  //  }
-
-  public T lastElement() {
-    return stackArray.get(top);
-  }
-
-  public boolean isEmpty() {
-    return (top == -1);
-  }
-}
-
-public class Button {
-  int x, y;
-  int width, height;
-  String name;
-
-  public Button(int x, int y, int width, int height, String name) {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
-    this.name = name;
-  }
-
-  public boolean isClicked(int x, int y) {
-    if (x > this.x && x < this.x + this.width) {
-      if (y > this.y && y < this.y + this.height) {
-        return true;
-      }
-    }
-    return false;
-  }
-}
 
 //
 //
