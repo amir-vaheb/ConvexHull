@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 // @pjs preload must be used to preload the image
@@ -15,8 +14,8 @@ public static int _sfr = 0;
 public boolean paused = true;
 public Button play, pause;
 public ArrayList<Button> buttons;
-PImage play_img, pause_img;
-
+//PImage play_img, pause_img;
+PShape play_sh, pause_sh,p1,p2;
 int min_uix, max_uix, min_uiy, max_uiy; 
 
 void _delay(int delay)
@@ -26,7 +25,7 @@ void _delay(int delay)
 }
 
 void setup() {
-  size(800, 400);
+  size(800, 400, P2D);
   strokeWeight(10);
   background(255);
 
@@ -51,9 +50,35 @@ void setup() {
     if (btn.y + btn.height > max_uiy)
       max_uiy = btn.y  + btn.height;
   }
+ 
+  play_sh = createShape(TRIANGLE, 5, 5, 20, 12.5, 5,20 );
+  play_sh.setFill(color(0, 0, 0));
+  play_sh.setStroke(false);
+   pause_sh = createShape(GROUP);
 
-  play_img = loadImage("/scripts/ConvexHull/play.jpg");
-  pause_img = loadImage("/scripts/ConvexHull/pause.jpg");
+  p1 = createShape();
+  p1.beginShape();
+  p1.fill(0, 0, 0);
+  p1.noStroke();
+  p1.vertex(5, 5);
+  p1.vertex(5, 20);
+  p1.vertex(10, 20);
+  p1.vertex(10, 5);
+  p1.endShape(CLOSE);
+  
+  p2 = createShape();
+  p2.beginShape();
+  p2.fill(0, 0, 0);
+  p2.noStroke();
+  p2.vertex(15, 5);
+  p2.vertex(15, 20);
+  p2.vertex(20, 20);
+  p2.vertex(20, 5);
+  p2.endShape(CLOSE);
+  pause_sh.addChild(p1);
+  pause_sh.addChild(p2);
+  //play_img = loadImage("C:/Users/amir/ConvexHull Web Project/scripts/ConvexHull/play.jpg");
+  //pause_img = loadImage("C:/Users/amir/ConvexHull Web Project/scripts/ConvexHull/pause.jpg");
 }
 
 boolean flag = false;
@@ -80,21 +105,24 @@ void draw() {
     _sfr = 0;
   }
 
-  drawUI();
-}
+drawUI();
 
-public void drawUI() {
+}
+ public void drawUI() {
   int w = 10;
   strokeWeight(2);
-  int padding = 5;
+  /*int padding = 5;
   rect(min_uix - padding, min_uiy - padding, max_uix, max_uiy);
   for (Button btn : buttons) {
     if (btn.name == "play") {
       image(play_img, play.x, play.y, play.width, play.height);
     } else if (btn.name == "pause") {
       image(pause_img, pause.x, pause.y, pause.width, pause.height);
-    }
+    } 
   }
+  */
+ shape(play_sh, 10, 10);
+ shape(pause_sh, 50, 10);
   strokeWeight(w);
 }
 
@@ -522,75 +550,6 @@ public boolean isOnRight(Point p, Point q, Point r) {
       + (p.x * q.y - p.y * q.x) > 0;
 }
 
-
-
-
-public class Stack<T> {
-  private int maxSize;
-
-  private ArrayList<T> stackArray;
-
-  private int top;
-
-  public Stack() {
-    stackArray = new ArrayList<T>();
-    top = -1;
-  }
-
-  public void add(T j) {
-    this.push(j) ;
-  }
-
-  public void push(T j) {
-    top++;
-    stackArray.add(j);
-  }
-
-  public T pop() {
-    T elem = stackArray.get(top--);
-    removeElementAt(top+1);
-    return elem;
-  }
-
-  public void removeElementAt(int i) {
-    stackArray.remove(i);
-  }
-
-  //  public T firstElement() {
-  //     return stackArray.get(0); 
-  //  }
-
-  public T lastElement() {
-    return stackArray.get(top);
-  }
-
-  public boolean isEmpty() {
-    return (top == -1);
-  }
-}
-
-public class Button {
-  int x, y;
-  int width, height;
-  String name;
-
-  public Button(int x, int y, int width, int height, String name) {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
-    this.name = name;
-  }
-
-  public boolean isClicked(int x, int y) {
-    if (x > this.x && x < this.x + this.width) {
-      if (y > this.y && y < this.y + this.height) {
-        return true;
-      }
-    }
-    return false;
-  }
-}
 //  public class Sort<T> {  
 //    
 //    //call mergesort on param list
@@ -691,6 +650,75 @@ public class Button {
 //            
 //        return a;
 //    }
+
+
+
+public class Stack<T> {
+  private int maxSize;
+
+  private ArrayList<T> stackArray;
+
+  private int top;
+
+  public Stack() {
+    stackArray = new ArrayList<T>();
+    top = -1;
+  }
+
+  public void add(T j) {
+    this.push(j) ;
+  }
+
+  public void push(T j) {
+    top++;
+    stackArray.add(j);
+  }
+
+  public T pop() {
+    T elem = stackArray.get(top--);
+    removeElementAt(top+1);
+    return elem;
+  }
+
+  public void removeElementAt(int i) {
+    stackArray.remove(i);
+  }
+
+  //  public T firstElement() {
+  //     return stackArray.get(0); 
+  //  }
+
+  public T lastElement() {
+    return stackArray.get(top);
+  }
+
+  public boolean isEmpty() {
+    return (top == -1);
+  }
+}
+
+public class Button {
+  int x, y;
+  int width, height;
+  String name;
+
+  public Button(int x, int y, int width, int height, String name) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.name = name;
+  }
+
+  public boolean isClicked(int x, int y) {
+    if (x > this.x && x < this.x + this.width) {
+      if (y > this.y && y < this.y + this.height) {
+        return true;
+      }
+    }
+    return false;
+  }
+}
 
 //
 //
