@@ -51,7 +51,7 @@ void setup() {
       max_uiy = btn.y  + btn.height;
   }
  
-  play_sh = createShape(TRIANGLE, 5, 5, 20, 12.5, 5,20 );
+ /* play_sh = createShape(TRIANGLE, 5, 5, 20, 12.5, 5,20 );
   play_sh.setFill(color(0, 0, 0));
   play_sh.setStroke(false);
    pause_sh = createShape(GROUP);
@@ -78,7 +78,7 @@ void setup() {
   pause_sh.addChild(p1);
   pause_sh.addChild(p2);
   //play_img = loadImage("C:/Users/amir/ConvexHull Web Project/scripts/ConvexHull/play.jpg");
-  //pause_img = loadImage("C:/Users/amir/ConvexHull Web Project/scripts/ConvexHull/pause.jpg");
+ */ //pause_img = loadImage("C:/Users/amir/ConvexHull Web Project/scripts/ConvexHull/pause.jpg");
 }
 
 boolean flag = false;
@@ -104,14 +104,27 @@ void draw() {
     }
     _sfr = 0;
   }
+int w = 10;
+ strokeWeight(2);
+line(15,15,30,22.5);
+line(30,22.5,15,30);
+line(15,30,15,15);
 
-drawUI();
+line(55,15,55,30);
+line(55,30,60,30);
+line(60,30,60,15);
+line(60,15,55,15);
 
+line(65,15,65,30);
+line(65,30,70,30);
+line(70,30,70,15);
+line(70,15,65,15);
+strokeWeight(w);
 }
- public void drawUI() {
+/* public void drawUI() {
   int w = 10;
   strokeWeight(2);
-  /*int padding = 5;
+  int padding = 5;
   rect(min_uix - padding, min_uiy - padding, max_uix, max_uiy);
   for (Button btn : buttons) {
     if (btn.name == "play") {
@@ -120,11 +133,11 @@ drawUI();
       image(pause_img, pause.x, pause.y, pause.width, pause.height);
     } 
   }
-  */
+ 
  shape(play_sh, 10, 10);
  shape(pause_sh, 50, 10);
-  strokeWeight(w);
-}
+  strokeWeight(w);*/
+//}
 
 public boolean uiClick(int x, int y) {
   int margin = 15;
